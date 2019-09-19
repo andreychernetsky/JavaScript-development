@@ -1,0 +1,19 @@
+<html>
+<body>
+<script>
+'use strict'
+
+function f(x) {
+  // ..ваш код..
+  // выведите 1, если первый аргумент есть, и 0 - если нет
+  // var x = arguments[0];
+  
+  (arguments.length) ? alert( 1 ) : alert( 0 );
+}
+
+f(undefined); // 1
+f(); // 0
+
+</script>
+</body>
+</html>
