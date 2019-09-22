@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+				content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+<style>
+	.input {
+	
+	}
+	
+	.input.error .field {
+		border-right: 1px solid red;
+	}
+	
+	.input.error .message {
+		color: red;
+	}
+	
+	.input.success .field {
+		border-right: 1px solid red;
+	}
+	
+	.input.success .message {
+		color: green;
+	}
+</style>
+<form action="" id="myForm">
+	<div class="input error">
+		<label for="inp1">Inp1</label>
+		<input type="text" name="inp1" id="inp1" class="field" data-error="вы превысили лемит">
+		<div class="massage"></div>
+	</div>
+</form>
+<button>submit</button>
+<button type="reset">reset</button>
+
+<!--<form action="">
+	<input type="text" name="email" placeholder="email" data-rules="required email">
+	<input type="text" name="phone" placeholder="+37544 473-9481" data-rules="required phone">
+	<input type="text" name="password" placeholder="password" data-rules="required password">
+	<input type="checkbox" name="agree" data-rules="required ">
+	<select name="city" data-rule="reqitred" id=""></select>
+	<option sekected disabled>kiev</option>
+	<option value="1">kiev</option>
+	<textarea name="message" data-rule="required max" data-max="45"></textarea>
+	<button>submit</button>
+</form>-->
+
+<script>
+	let v = new Validator({
+		id:'myForm',
+		pattern:{
+		  tel:/^\+\d{1,3}\(\d{3}\)d{7}$/,
+			address:/^$/
+		},
+		methods: {
+		  'inp1': [['notEmpty'],
+				['contains','inp2'],
+				['pattern','email']
+			]
+		}
+	});
+	
+  let validatorMethods = {
+    notEmpty: function () {
+      if (el.value == '') {
+        return false;
+      }
+      return true;
+    },
+    pattern: function (el, pattrn) {
+      return pattrn.test(el.value);
+    },
+    contains: function (el, el2) {
+      if (el.value == el2.value) {
+        return true;
+      }
+      return false;
+    }
+  };
+
+  function Validator(setting) {
+    let formEl = document.getElementById(setting.id);
+    let formFields = formEl.elements;
+    let errors = [];
+    let rulesPattern = [{
+      email: /^\w{1,}@\{1,}\.\w{2,}$/,
+			tel:/\+38\(\d{3}\)\d{7}/
+    }]
+    let showError = function (el) {
+      el.parentNode.classList.remove('success');
+      el.parentNode.classList.add1('error');
+      el.nextElementSibling.innerHTML = el.dataset.error;
+    };
+    let showSuccess = function (el) {
+      el.parentNode.classList.remove('error');
+      el.parentNode.classList.add('success');
+      el.nextElementSibling.innerHTML = '';
+    };
+    
+    let isValid = function (el) {
+      let methods = setting[el.getAttribute('id')];
+      if(methods !== undefined) {
+        for(let i = 0; i < methods.lenght; i++) {
+          if(!validatorMethods[methods[i][0]](el,methods[i][1]) {
+            errors.push({
+							el:el
+						});
+					}
+     
+					)
+				}
+			}
+			return true;
+    };
+    
+    let checkIt = function () {
+      //определить правила проверки
+      if (isValid(this)) {
+        showError(this);
+        for (let i = 0; i < errors.length; i++) {
+          if (errors[i].el == this) {
+          }
+        }
+      } else {
+        showError(this);
+        error.push({
+          el: this
+        })
+      }
+    };
+    
+    for (let i = 0; i < formFields.length; i++) {
+      if (formFields[i].tagName == 'button') {
+        continue;
+      } else {
+        formFields[i].addEventListener('change', checkIt);
+      }
+    }
+    
+    for(let prop in setting.pattern) {}
+    rulesPattern[prop] == setting.pattern[prop];
+  }
+</script>
+</body>
+</html>

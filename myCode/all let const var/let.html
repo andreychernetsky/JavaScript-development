@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+<script>
+  let i;
+  for(i = 0; i <= 10; i++){
+    console.log(i);
+  }
+  /////////////////////////////////////
+
+  let i = 0;
+  while(i < 10) {
+    console.log(i);
+    i++;
+    console.log(i)
+
+    /////////////////////////////////////////////
+    const fun = function (n){
+
+      for(let i = 0; i <=n; i++){
+        console.log(i);
+      }
+      return n;
+    };
+
+    let num = 10;
+    console.log(fun(num));
+
+
+
+/////////////////////////////////////////
+    function fun(n) {
+      for(let i = 0; i <=n; i++){
+        console.log(i);
+      }
+      return n;
+    }
+
+    let num = 10;
+    console.log(fun(num));
+
+    /////////////////////////////////////
+    let arr = [1,2,3,4];
+    let summ =0;
+    for (let i = 0; i < arr.length; i++){
+      summ +=arr[i];
+      console.log(summ)
+    }
+    console.log(summ);
+
+    /////////////////////////////////////
+    function summ(arr) {
+      let sum = 0;
+      for(let i = 0; i < arr.length; i++) {
+
+        sum+=arr[i];
+        console.log(arr[i]);
+      }
+      return sum;
+    }
+    let arr = [1,2,3,4];
+
+    console.log(summ(arr));
+///////////////////////////////////
+    function res(arr) {
+      let sum = 0;
+      arr.forEach((elem)=> sum +=+elem);
+      return sum;
+    }
+    let arr = [1,2,3,4];
+
+    console.log(res(arr));
+
+//////////////////////////////////////////////////
+    const each = function (arr1, callback) {
+      for (let k = 0; k < arr1.length; k++) {
+        callback(arr1[k], k , arr)
+
+      }
+    };
+    let arr = [1, 2, 3, 4];
+    each(arr, function (item, index, arr){
+      // console.log(index +":" + item + " (" +arr+" )");
+      console.log(`${index}:${item}:(${arr})`);
+    });
+  ///////////////////////////////////////////////
+</script>
+</body>
+</html>

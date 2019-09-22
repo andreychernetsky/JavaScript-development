@@ -1,0 +1,20 @@
+<html>
+<body>
+<script>
+'use strict'
+
+function getLocalDay(date) {
+  var d = date.getDay();
+  if (d > 0) {
+    return date.getDay();
+  } else {
+    return 0;
+  }
+}
+
+var date = new Date(2012, 0, 8);  // 3 янв 2012
+alert( getLocalDay(date) );       // вторник, выведет 2
+
+</script>
+</body>
+</html>

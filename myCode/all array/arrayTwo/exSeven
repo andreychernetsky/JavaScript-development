@@ -1,0 +1,32 @@
+<html>
+
+<body>
+  <script>
+    'use strict';
+    function aclean(arr) {
+      // этот объект будем использовать для уникальности
+      const obj = {};
+
+      for (let i = 0; i < arr.length; i++) {
+        // разбить строку на буквы, отсортировать и слить обратно
+        let sorted = arr[i].toLowerCase().split('').sort().join(''); // (*)
+        //  console.log(sorted);
+        obj[sorted] = arr[i]; // сохраняет только одно значение с таким ключом
+
+      }
+
+      const result = [];
+
+      // теперь в obj находится для каждого ключа ровно одно значение
+      for (let key in obj) result.push(obj[key]);
+
+      return result;
+    }
+
+    const arr = ["воз", "киборг", "корсет", "ЗОВ", "гробик", "костер", "сектор"];
+
+    console.log(aclean(arr));
+  </script>
+</body>
+
+</html>
